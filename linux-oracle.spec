@@ -5,7 +5,7 @@
 
 Name:           linux-oracle
 Version:        4.15.15
-Release:        1
+Release:        2
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -13,7 +13,6 @@ Group:          kernel
 Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.15.15.tar.xz
 Source1:        config
 Source2:        cmdline
-Source3:        installkernel
 
 %define ktarget  oracle
 %define kversion %{version}-%{release}.%{ktarget}
@@ -122,14 +121,6 @@ Group:          kernel
 
 %description extra
 Linux kernel extra files
-
-%package dev
-License:        GPL-2.0
-Summary:        The Linux kernel
-Group:          kernel
-
-%description dev
-Linux kernel install script
 
 %prep
 %setup -q -n linux-4.15.15
@@ -276,7 +267,3 @@ rm -rf %{buildroot}/usr/lib/firmware
 %dir /usr/lib/kernel
 /usr/lib/kernel/System.map-%{kversion}
 /usr/lib/kernel/vmlinux-%{kversion}
-
-%files dev
-%defattr(-,root,root)
-/usr/sbin/installkernel
