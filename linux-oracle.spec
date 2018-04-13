@@ -5,7 +5,7 @@
 
 Name:           linux-oracle
 Version:        4.15.15
-Release:        2
+Release:        3
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -218,8 +218,6 @@ BuildKernel() {
 BuildKernel %{ktarget}
 
 %install
-mkdir -p %{buildroot}/usr/sbin
-install -m 755 %{SOURCE3} %{buildroot}/usr/sbin
 
 InstallKernel() {
 
