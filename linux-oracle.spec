@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        4.16.3
-Release:        4
+Version:        4.16.6
+Release:        5
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.16.3.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.16.6.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -102,6 +102,8 @@ Patch0154: 0154-sysctl-vm-Fine-grained-cache-shrinking.patch
 Patch0500: zero-regs.patch
 Patch0501: itmt.patch
 Patch0503: spinfaster.patch
+Patch0504: try_load_dmc.patch
+Patch0505: clip-idle-prediction.patch
 
 # Serie    XYYY: Extra features modules
 #    200X: Open Programmable Acceleration Engine (OPAE)
@@ -124,7 +126,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.16.3
+%setup -q -n linux-4.16.6
 
 #     000X  cve, bugfixes patches
 
@@ -183,6 +185,8 @@ Linux kernel extra files
 %patch0500 -p1
 %patch0501 -p1
 %patch0503 -p1
+%patch0504 -p1
+%patch0505 -p1
 
 # Serie    XYYY: Extra features modules
 #    200X: Open Programmable Acceleration Engine (OPAE)
