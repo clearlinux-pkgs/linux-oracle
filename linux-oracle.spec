@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        4.16.6
-Release:        6
+Version:        4.16.8
+Release:        7
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.16.6.tar.xz
+Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.16.8.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -126,7 +126,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.16.6
+%setup -q -n linux-4.16.8
 
 #     000X  cve, bugfixes patches
 
@@ -247,7 +247,16 @@ InstallKernel() {
     ln -s org.clearlinux.${Target}.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-${Target}
     dracut --kmoddir %{buildroot}/usr/lib/modules/%{version}-%{release}.${Target} \
            --kver %{version}-%{release}.${Target} \
-           %{buildroot}/usr/lib/kernel/initrd-org.clearlinux.${Target}.%{version}-%{release}
+           -m "base bash dracut-systemd fs-lib iscsi network rootfs-block shutdown systemd systemd-initrd udev-rules usrmount" \
+           tmp-initrd
+    mkdir t
+    cd t
+    lsinitrd --unpack ../tmp-initrd
+    cp /usr/lib64/libpci.so.* usr/lib64/
+    cp /usr/lib64/libisns.so.* usr/lib64/
+    cp /usr/bin/iscsid usr/bin/
+    cp /usr/bin/iscsiadm usr/bin/
+    find . | cpio -o -H newc | gzip > %{buildroot}/usr/lib/kernel/initrd-org.clearlinux.${Target}.%{version}-%{release}
 }
 
 InstallKernel %{ktarget}  %{kversion}
