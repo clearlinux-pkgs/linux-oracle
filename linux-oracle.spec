@@ -20,15 +20,18 @@ Source2:        cmdline
 BuildRequires:  bash >= 2.03
 BuildRequires:  bc
 BuildRequires:  binutils-dev
+BuildRequires:  bison
+BuildRequires:  dhcp
 BuildRequires:  dracut
 BuildRequires:  elfutils-dev
-BuildRequires:  make >= 3.78
-BuildRequires:  openssl-dev
 BuildRequires:  flex
-BuildRequires:  bison
+BuildRequires:  iproute2
+BuildRequires:  iputils
 BuildRequires:  kmod
-BuildRequires:  open-iscsi
 BuildRequires:  linux-firmware
+BuildRequires:  make >= 3.78
+BuildRequires:  open-iscsi
+BuildRequires:  openssl-dev
 BuildRequires:  systemd
 BuildRequires:  util-linux
 
@@ -47,20 +50,20 @@ Requires: systemd-console
 Patch0041: 0001-idle-from-rafael.patch
 Patch0042: 0002-idle-from-rafael.patch
 
-Patch0051: 0001-time-tick-sched-Reorganize-idle-tick-management-code.patch
-Patch0052: 0002-sched-idle-Do-not-stop-the-tick-upfront-in-the-idle-.patch
-Patch0053: 0003-sched-idle-Do-not-stop-the-tick-before-cpuidle_idle_.patch
-Patch0054: 0004-jiffies-Introduce-USER_TICK_USEC-and-redefine-TICK_U.patch
-Patch0055: 0005-cpuidle-Return-nohz-hint-from-cpuidle_select.patch
-Patch0056: 0006-time-tick-sched-Split-tick_nohz_stop_sched_tick.patch
-Patch0057: 0007-time-hrtimer-Introduce-hrtimer_next_event_without.patch
-Patch0058: 0008-sched-idle-Select-idle-state-before-stopping-the-tic.patch
-Patch0059: 0009-cpuidle-menu-Refine-idle-state-selection-for-running.patch
-Patch0060: 0010-cpuidle-menu-Avoid-selecting-shallow-states-with-sto.patch
-Patch0061: 0011-nohz-Gather-tick_sched-booleans-under-a-common-flag-.patch
-Patch0062: 0012-nohz-Avoid-duplication-of-code-related-to-got_idle_t.patch
-Patch0063: 0013-time-hrtimer-Use-timerqueue_iterate_next-to-get-to-t.patch
-Patch0064: 0099-fixup-idle.patch
+# Patch0051: 0001-time-tick-sched-Reorganize-idle-tick-management-code.patch
+# Patch0052: 0002-sched-idle-Do-not-stop-the-tick-upfront-in-the-idle-.patch
+# Patch0053: 0003-sched-idle-Do-not-stop-the-tick-before-cpuidle_idle_.patch
+# Patch0054: 0004-jiffies-Introduce-USER_TICK_USEC-and-redefine-TICK_U.patch
+# Patch0055: 0005-cpuidle-Return-nohz-hint-from-cpuidle_select.patch
+# Patch0056: 0006-time-tick-sched-Split-tick_nohz_stop_sched_tick.patch
+# Patch0057: 0007-time-hrtimer-Introduce-hrtimer_next_event_without.patch
+# Patch0058: 0008-sched-idle-Select-idle-state-before-stopping-the-tic.patch
+# Patch0059: 0009-cpuidle-menu-Refine-idle-state-selection-for-running.patch
+# Patch0060: 0010-cpuidle-menu-Avoid-selecting-shallow-states-with-sto.patch
+# Patch0061: 0011-nohz-Gather-tick_sched-booleans-under-a-common-flag-.patch
+# Patch0062: 0012-nohz-Avoid-duplication-of-code-related-to-got_idle_t.patch
+# Patch0063: 0013-time-hrtimer-Use-timerqueue_iterate_next-to-get-to-t.patch
+# Patch0064: 0099-fixup-idle.patch
 
 # Serie    01XX: Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
@@ -134,20 +137,20 @@ Linux kernel extra files
 %patch0041 -p1
 %patch0042 -p1
 
-%patch0051 -p1
-%patch0052 -p1
-%patch0053 -p1
-%patch0054 -p1
-%patch0055 -p1
-%patch0056 -p1
-%patch0057 -p1
-%patch0058 -p1
-%patch0059 -p1
-%patch0060 -p1
-%patch0061 -p1
-%patch0062 -p1
-%patch0063 -p1
-%patch0064 -p1
+# %patch0051 -p1
+# %patch0052 -p1
+# %patch0053 -p1
+# %patch0054 -p1
+# %patch0055 -p1
+# %patch0056 -p1
+# %patch0057 -p1
+# %patch0058 -p1
+# %patch0059 -p1
+# %patch0060 -p1
+# %patch0061 -p1
+# %patch0062 -p1
+# %patch0063 -p1
+# %patch0064 -p1
 
 #     01XX  Clear Linux patches
 %patch0101 -p1
@@ -245,14 +248,17 @@ InstallKernel() {
     rm -f %{buildroot}/usr/lib/modules/${Kversion}/source
 
     ln -s org.clearlinux.${Target}.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-${Target}
+    # hack since dhclient is not where dracut expects it to be
+    export DRACUT_PATH=/usr/libexec/:$PATH
     dracut --kmoddir %{buildroot}/usr/lib/modules/%{version}-%{release}.${Target} \
            --kver %{version}-%{release}.${Target} \
            -m "base bash dracut-systemd fs-lib iscsi network rootfs-block shutdown systemd systemd-initrd udev-rules usrmount" \
+           --include /usr/libexec/dhclient /usr/bin/dhclient \
            tmp-initrd
+    # hack since dracut misses some key pieces to actually be able to mount the iscsi rootfs
     mkdir t
     cd t
     lsinitrd --unpack ../tmp-initrd
-    cp /usr/lib64/libpci.so.* usr/lib64/
     cp /usr/lib64/libisns.so.* usr/lib64/
     cp /usr/bin/iscsid usr/bin/
     cp /usr/bin/iscsiadm usr/bin/
