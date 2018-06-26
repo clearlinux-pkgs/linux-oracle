@@ -5,7 +5,7 @@
 
 Name:           linux-oracle
 Version:        4.16.11
-Release:        10
+Release:        11
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -35,7 +35,7 @@ BuildRequires:  openssl-dev
 BuildRequires:  systemd
 BuildRequires:  util-linux
 
-Requires: systemd-console
+Requires: systemd-bin
 
 # don't strip .ko files!
 %global __os_install_post %{nil}
