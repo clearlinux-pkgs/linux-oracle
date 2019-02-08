@@ -4,35 +4,25 @@
 #
 
 Name:           linux-oracle
-Version:        4.16.11
+Version:        4.20.7
 Release:        11
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.16.11.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.20.7.tar.xz
 Source1:        config
 Source2:        cmdline
 
 %define ktarget  oracle
 %define kversion %{version}-%{release}.%{ktarget}
 
-BuildRequires:  bash >= 2.03
-BuildRequires:  bc
-BuildRequires:  binutils-dev
-BuildRequires:  bison
+BuildRequires:  buildreq-kernel
 BuildRequires:  dhcp
 BuildRequires:  dracut
-BuildRequires:  elfutils-dev
-BuildRequires:  flex
 BuildRequires:  iproute2
 BuildRequires:  iputils
-BuildRequires:  kmod
-BuildRequires:  linux-firmware
-BuildRequires:  make >= 3.78
 BuildRequires:  open-iscsi
-BuildRequires:  openssl-dev
-BuildRequires:  systemd
 BuildRequires:  util-linux
 
 Requires: systemd-bin
@@ -43,79 +33,46 @@ Requires: systemd-bin
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-
+Patch0001: CVE-2019-3819.patch
+Patch0002: 0002-vhost-vsock-fix-vhost-vsock-cid-hashing-inconsistent.patch
 
 #    00XY: Mainline patches, upstream backports
 
-Patch0041: 0001-idle-from-rafael.patch
-Patch0042: 0002-idle-from-rafael.patch
-
-# Patch0051: 0001-time-tick-sched-Reorganize-idle-tick-management-code.patch
-# Patch0052: 0002-sched-idle-Do-not-stop-the-tick-upfront-in-the-idle-.patch
-# Patch0053: 0003-sched-idle-Do-not-stop-the-tick-before-cpuidle_idle_.patch
-# Patch0054: 0004-jiffies-Introduce-USER_TICK_USEC-and-redefine-TICK_U.patch
-# Patch0055: 0005-cpuidle-Return-nohz-hint-from-cpuidle_select.patch
-# Patch0056: 0006-time-tick-sched-Split-tick_nohz_stop_sched_tick.patch
-# Patch0057: 0007-time-hrtimer-Introduce-hrtimer_next_event_without.patch
-# Patch0058: 0008-sched-idle-Select-idle-state-before-stopping-the-tic.patch
-# Patch0059: 0009-cpuidle-menu-Refine-idle-state-selection-for-running.patch
-# Patch0060: 0010-cpuidle-menu-Avoid-selecting-shallow-states-with-sto.patch
-# Patch0061: 0011-nohz-Gather-tick_sched-booleans-under-a-common-flag-.patch
-# Patch0062: 0012-nohz-Avoid-duplication-of-code-related-to-got_idle_t.patch
-# Patch0063: 0013-time-hrtimer-Use-timerqueue_iterate_next-to-get-to-t.patch
-# Patch0064: 0099-fixup-idle.patch
-
 # Serie    01XX: Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
-Patch0102: 0102-init-do_mounts-recreate-dev-root.patch
-Patch0103: 0103-Increase-the-ext4-default-commit-age.patch
-Patch0104: 0104-silence-rapl.patch
-Patch0105: 0105-pci-pme-wakeups.patch
-Patch0106: 0106-ksm-wakeups.patch
-Patch0107: 0107-intel_idle-tweak-cpuidle-cstates.patch
-Patch0108: 0108-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
-Patch0110: 0110-fs-ext4-fsync-optimize-double-fsync-a-bunch.patch
-Patch0111: 0111-overload-on-wakeup.patch
-Patch0112: 0112-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch
-Patch0113: 0113-fix-initcall-timestamps.patch
-Patch0114: 0114-smpboot-reuse-timer-calibration.patch
-Patch0115: 0115-raid6-add-Kconfig-option-to-skip-raid6-benchmarking.patch
-Patch0116: 0116-Initialize-ata-before-graphics.patch
-Patch0117: 0117-reduce-e1000e-boot-time-by-tightening-sleep-ranges.patch
-Patch0118: 0118-give-rdrand-some-credit.patch
-Patch0120: 0120-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit.patch
-Patch0121: 0121-igb-no-runtime-pm-to-fix-reboot-oops.patch
-Patch0122: 0122-tweak-perfbias.patch
-Patch0123: 0123-e1000e-increase-pause-and-refresh-time.patch
-Patch0124: 0124-kernel-time-reduce-ntp-wakeups.patch
-Patch0125: 0125-init-wait-for-partition-and-retry-scan.patch
-Patch0126: 0126-print-fsync-count-for-bootchart.patch
-Patch0127: 0127-Add-boot-option-to-allow-unsigned-modules.patch
+Patch0102: 0102-Increase-the-ext4-default-commit-age.patch
+Patch0103: 0103-silence-rapl.patch
+Patch0104: 0104-pci-pme-wakeups.patch
+Patch0105: 0105-ksm-wakeups.patch
+Patch0106: 0106-intel_idle-tweak-cpuidle-cstates.patch
+Patch0107: 0107-bootstats-add-printk-s-to-measure-boot-time-in-more-.patch
+Patch0108: 0108-smpboot-reuse-timer-calibration.patch
+Patch0109: 0109-raid6-add-Kconfig-option-to-skip-raid6-benchmarking.patch
+Patch0110: 0110-Initialize-ata-before-graphics.patch
+Patch0111: 0111-reduce-e1000e-boot-time-by-tightening-sleep-ranges.patch
+Patch0112: 0112-give-rdrand-some-credit.patch
+Patch0113: 0113-ipv4-tcp-allow-the-memory-tuning-for-tcp-to-go-a-lit.patch
+Patch0114: 0114-tweak-perfbias.patch
+Patch0115: 0115-e1000e-increase-pause-and-refresh-time.patch
+Patch0116: 0116-kernel-time-reduce-ntp-wakeups.patch
+Patch0117: 0117-init-wait-for-partition-and-retry-scan.patch
+Patch0118: 0118-print-fsync-count-for-bootchart.patch
+Patch0119: 0119-Add-boot-option-to-allow-unsigned-modules.patch
+Patch0120: 0120-Enable-stateless-firmware-loading.patch
+Patch0121: 0121-Migrate-some-systemd-defaults-to-the-kernel-defaults.patch
+Patch0122: 0122-xattr-allow-setting-user.-attributes-on-symlinks-by-.patch
+Patch0123: 0123-add-scheduler-turbo3-patch.patch
+Patch0124: 0124-use-lfence-instead-of-rep-and-nop.patch
+Patch0125: 0125-do-accept-in-LIFO-order-for-cache-efficiency.patch
+Patch0126: 0126-zero-extra-registers.patch
+Patch0127: 0127-locking-rwsem-spin-faster.patch
+#Serie.clr.end
 
-# Clear Linux KVM Memory Optimization
-Patch0151: 0151-mm-Export-do_madvise.patch
-Patch0152: 0152-x86-kvm-Notify-host-to-release-pages.patch
-Patch0153: 0153-x86-Return-memory-from-guest-to-host-kernel.patch
-Patch0154: 0154-sysctl-vm-Fine-grained-cache-shrinking.patch
-
-#
-# Upstream backports
-#
-
-Patch0500: zero-regs.patch
-Patch0501: itmt.patch
-Patch0503: spinfaster.patch
-Patch0504: try_load_dmc.patch
-Patch0505: clip-idle-prediction.patch
-
-# Serie    XYYY: Extra features modules
-#    200X: Open Programmable Acceleration Engine (OPAE)
-Patch2001: 2001-opae-add-intel-fpga-drivers.patch
-Patch2002: 2002-opae-add-Kconfig-and-Makefile.patch
-
-#    300X: Sysdig
-Patch3001: 3001-Add-sysdig-0.20-driver.patch
-Patch3002: 3002Add-sysdig-to-kernel-build-system.patch
+#Serie1.name WireGuard
+#Serie1.git  https://git.zx2c4.com/WireGuard
+#Serie1.tag  00bf4f8c8c0ec006633a48fd9ee746b30bb9df17
+Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
+#Serie1.end
 
 %description
 The Linux kernel.
@@ -129,28 +86,13 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.16.11
+%setup -q -n linux-4.20.7
 
 #     000X  cve, bugfixes patches
+%patch0001 -p1
+%patch0002 -p1
 
 #     00XY  Mainline patches, upstream backports
-%patch0041 -p1
-%patch0042 -p1
-
-# %patch0051 -p1
-# %patch0052 -p1
-# %patch0053 -p1
-# %patch0054 -p1
-# %patch0055 -p1
-# %patch0056 -p1
-# %patch0057 -p1
-# %patch0058 -p1
-# %patch0059 -p1
-# %patch0060 -p1
-# %patch0061 -p1
-# %patch0062 -p1
-# %patch0063 -p1
-# %patch0064 -p1
 
 #     01XX  Clear Linux patches
 %patch0101 -p1
@@ -161,15 +103,17 @@ Linux kernel extra files
 %patch0106 -p1
 %patch0107 -p1
 %patch0108 -p1
+%patch0109 -p1
 %patch0110 -p1
 %patch0111 -p1
 %patch0112 -p1
 %patch0113 -p1
 %patch0114 -p1
-#%patch0115 -p1
+%patch0115 -p1
 %patch0116 -p1
 %patch0117 -p1
 %patch0118 -p1
+%patch0119 -p1
 %patch0120 -p1
 %patch0121 -p1
 %patch0122 -p1
@@ -179,27 +123,9 @@ Linux kernel extra files
 %patch0126 -p1
 %patch0127 -p1
 
-# Clear Linux KVM Memory Optimization
-%patch0151 -p1
-%patch0152 -p1
-%patch0153 -p1
-%patch0154 -p1
-
-%patch0500 -p1
-%patch0501 -p1
-%patch0503 -p1
-%patch0504 -p1
-%patch0505 -p1
-
-# Serie    XYYY: Extra features modules
-#    200X: Open Programmable Acceleration Engine (OPAE)
-#%patch2001 -p1
-#%patch2002 -p1
-
-#	300X: sysdig
-%patch3001 -p1
-%patch3002 -p1
-
+#Serie1.patch.start
+%patch1001 -p1
+#Serie1.patch.end
 
 cp %{SOURCE1} .
 
@@ -247,7 +173,16 @@ InstallKernel() {
     rm -f %{buildroot}/usr/lib/modules/${Kversion}/build
     rm -f %{buildroot}/usr/lib/modules/${Kversion}/source
 
+    # Kernel default target link
     ln -s org.clearlinux.${Target}.%{version}-%{release} %{buildroot}/usr/lib/kernel/default-${Target}
+}
+
+# cpio file for i8042 libps2 atkbd
+createInitrd() {
+
+    Target=$1
+    Kversion=$2
+
     # hack since dhclient is not where dracut expects it to be
     export DRACUT_PATH=/usr/libexec/:$PATH
     dracut --kmoddir %{buildroot}/usr/lib/modules/%{version}-%{release}.${Target} \
@@ -262,10 +197,13 @@ InstallKernel() {
     cp /usr/lib64/libisns.so.* usr/lib64/
     cp /usr/bin/iscsid usr/bin/
     cp /usr/bin/iscsiadm usr/bin/
-    find . | cpio -o -H newc | gzip > %{buildroot}/usr/lib/kernel/initrd-org.clearlinux.${Target}.%{version}-%{release}
+    find . | cpio -o -H newc \
+      | gzip > %{buildroot}/usr/lib/kernel/initrd-org.clearlinux.${Target}.%{version}-%{release}
 }
 
-InstallKernel %{ktarget}  %{kversion}
+InstallKernel %{ktarget} %{kversion}
+
+createInitrd %{ktarget} %{kversion}
 
 rm -rf %{buildroot}/usr/lib/firmware
 
