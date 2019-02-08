@@ -23,6 +23,7 @@ BuildRequires:  dracut
 BuildRequires:  iproute2
 BuildRequires:  iputils
 BuildRequires:  open-iscsi
+BuildRequires:  systemd
 BuildRequires:  util-linux
 
 Requires: systemd-bin
@@ -149,6 +150,8 @@ BuildKernel() {
 }
 
 BuildKernel %{ktarget}
+
+touch abifiles.list
 
 %install
 
