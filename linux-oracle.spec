@@ -5,7 +5,7 @@
 
 Name:           linux-oracle
 Version:        4.20.7
-Release:        12
+Release:        13
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
