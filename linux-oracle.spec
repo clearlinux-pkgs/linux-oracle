@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        4.20.13
-Release:        23
+Version:        5.0.0
+Release:        24
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.20.13.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -34,12 +34,15 @@ Requires: systemd-bin
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: 0002-vhost-vsock-fix-vhost-vsock-cid-hashing-inconsistent.patch
-Patch0003: CVE-2019-8980.patch
+Patch0001: CVE-2019-8980.patch
 
 #    00XY: Mainline patches, upstream backports
 
-# Serie    01XX: Clear Linux patches
+#          BBR perf fix backport
+Patch0050: 0050-tcp_bbr-refactor-bbr_target_cwnd-for-general-infligh.patch
+Patch0051: 0051-tcp_bbr-adapt-cwnd-based-on-ack-aggregation-estimati.patch
+
+# Serie    01XX- Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
 Patch0102: 0102-Increase-the-ext4-default-commit-age.patch
 Patch0103: 0103-silence-rapl.patch
@@ -71,7 +74,7 @@ Patch0127: 0127-locking-rwsem-spin-faster.patch
 
 #Serie1.name WireGuard
 #Serie1.git  https://git.zx2c4.com/WireGuard
-#Serie1.tag  00bf4f8c8c0ec006633a48fd9ee746b30bb9df17
+#Serie1.tag  c13c45fde68298e3c996372333addd672ddb6737
 Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
 #Serie1.end
 
@@ -87,13 +90,16 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-4.20.13
+%setup -q -n linux-5.0
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
-%patch0003 -p1
 
 #     00XY  Mainline patches, upstream backports
+
+#           BBR perf fix bacport
+%patch0050 -p1
+%patch0051 -p1
 
 #     01XX  Clear Linux patches
 %patch0101 -p1
