@@ -34,8 +34,6 @@ Requires: systemd-bin
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: 0001-i40iw-Avoid-panic-when-handling-the-inetdev-event.patch
-Patch0002: CVE-2019-9857.patch
 
 #    00XY: Mainline patches, upstream backports
 
@@ -95,8 +93,6 @@ Linux kernel extra files
 %setup -q -n linux-5.0.9
 
 #     000X  cve, bugfixes patches
-%patch0001 -p1
-%patch0002 -p1
 
 #     00XY  Mainline patches, upstream backports
 
