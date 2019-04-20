@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.0.8
-Release:        35
+Version:        5.0.9
+Release:        36
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.8.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.9.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -92,7 +92,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-5.0.8
+%setup -q -n linux-5.0.9
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
