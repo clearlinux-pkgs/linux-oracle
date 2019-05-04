@@ -34,9 +34,7 @@ Requires: systemd-bin
 %define __strip /bin/true
 
 #    000X: cve, bugfixes patches
-Patch0001: CVE-2019-11487.patch
-Patch0002: CVE-2019-3882.patch
-Patch0003: CVE-2019-9500.patch
+Patch0001: CVE-2019-9500.patch
 
 #    00XY: Mainline patches, upstream backports
 
@@ -97,8 +95,6 @@ Linux kernel extra files
 
 #     000X  cve, bugfixes patches
 %patch0001 -p1
-%patch0002 -p1
-%patch0003 -p1
 
 #     00XY  Mainline patches, upstream backports
 
