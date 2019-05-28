@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.0.18
-Release:        50
+Version:        5.1.5
+Release:        51
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.0.18.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.1.5.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -36,10 +36,6 @@ Requires: systemd-bin
 #    000X: cve, bugfixes patches
 
 #    00XY: Mainline patches, upstream backports
-
-#          BBR perf fix backport
-Patch0050: 0050-tcp_bbr-refactor-bbr_target_cwnd-for-general-infligh.patch
-Patch0051: 0051-tcp_bbr-adapt-cwnd-based-on-ack-aggregation-estimati.patch
 
 # Serie    01XX- Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
@@ -90,15 +86,11 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-5.0.18
+%setup -q -n linux-5.1.5
 
 #     000X  cve, bugfixes patches
 
 #     00XY  Mainline patches, upstream backports
-
-#           BBR perf fix bacport
-%patch0050 -p1
-%patch0051 -p1
 
 #     01XX  Clear Linux patches
 %patch0101 -p1
