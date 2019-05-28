@@ -33,11 +33,13 @@ Requires: systemd-bin
 %define debug_package %{nil}
 %define __strip /bin/true
 
-#    000X: cve, bugfixes patches
+#cve.start cve patches from 0001 to 009
+#cve.end
 
-#    00XY: Mainline patches, upstream backports
+#mainline: Mainline patches, upstream backport and fixes from 0010 to 0099
+#mainline.end
 
-# Serie    01XX- Clear Linux patches
+#Serie.clr 01XX: Clear Linux patches
 Patch0101: 0101-i8042-decrease-debug-message-level-to-info.patch
 Patch0102: 0102-Increase-the-ext4-default-commit-age.patch
 Patch0103: 0103-silence-rapl.patch
@@ -65,7 +67,7 @@ Patch0124: 0124-use-lfence-instead-of-rep-and-nop.patch
 Patch0125: 0125-do-accept-in-LIFO-order-for-cache-efficiency.patch
 Patch0126: 0126-zero-extra-registers.patch
 Patch0127: 0127-locking-rwsem-spin-faster.patch
-#Serie.clr.end
+#Serie.end
 
 #Serie1.name WireGuard
 #Serie1.git  https://git.zx2c4.com/WireGuard
@@ -88,11 +90,13 @@ Linux kernel extra files
 %prep
 %setup -q -n linux-5.1.5
 
-#     000X  cve, bugfixes patches
+#cve.patch.start cve patches
+#cve.patch.end
 
-#     00XY  Mainline patches, upstream backports
+#mainline.patch.start Mainline patches, upstream backport and fixes
+#mainline.patch.end
 
-#     01XX  Clear Linux patches
+#Serie.patch.start Clear Linux patches
 %patch0101 -p1
 %patch0102 -p1
 %patch0103 -p1
@@ -120,6 +124,7 @@ Linux kernel extra files
 %patch0125 -p1
 %patch0126 -p1
 %patch0127 -p1
+#Serie.patch.end
 
 #Serie1.patch.start
 %patch1001 -p1
