@@ -4,13 +4,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.1.12
-Release:        60
+Version:        5.1.13
+Release:        61
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.1.12.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.1.13.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -97,7 +97,7 @@ Group:          kernel
 Linux kernel extra files
 
 %prep
-%setup -q -n linux-5.1.12
+%setup -q -n linux-5.1.13
 
 #cve.patch.start cve patches
 %patch0001 -p1
