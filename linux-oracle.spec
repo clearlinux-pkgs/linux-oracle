@@ -5,7 +5,7 @@
 
 Name:           linux-oracle
 Version:        5.2.2
-Release:        68
+Release:        69
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -265,6 +265,7 @@ createInitrd() {
     cp /usr/bin/iscsiadm usr/bin/
     find . | cpio -o -H newc \
       | gzip > %{buildroot}/usr/lib/kernel/initrd-org.clearlinux.${Target}.%{version}-%{release}
+    cd ..
 }
 
 InstallKernel %{ktarget} %{kversion}
