@@ -1,6 +1,7 @@
 #
 # note to self: Linus releases need to be named 4.x.0 not 4.x or various
 # things break
+# 
 #
 
 Name:           linux-oracle
@@ -107,7 +108,7 @@ The Linux kernel.
 
 %package extra
 License:        GPL-2.0
-Summary:        The Linux kernel extra files
+Summary:        The Linux kernel oracle extra files
 Group:          kernel
 Requires:       linux-oracle-license = %{version}-%{release}
 
@@ -190,9 +191,6 @@ license components for the linux package.
 #Serie1.patch.end
 
 cp %{SOURCE1} .
-
-cp -a /usr/lib/firmware/i915 firmware/
-cp -a /usr/lib/firmware/intel-ucode firmware/
 
 %build
 BuildKernel() {
