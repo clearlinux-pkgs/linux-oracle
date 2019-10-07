@@ -6,7 +6,6 @@ i915.fastboot=1
 init=/usr/lib/systemd/systemd
 initcall_debug
 intel_iommu=igfx_off
-kvm-intel.nested=1
 netroot=iscsi:@169.254.0.2:::1:iqn.2015-02.oracle.boot:uefi
 no_timer_check
 noreplace-smp
