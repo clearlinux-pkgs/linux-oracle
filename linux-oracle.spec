@@ -6,7 +6,7 @@
 
 Name:           linux-oracle
 Version:        5.3.10
-Release:        97
+Release:        98
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
