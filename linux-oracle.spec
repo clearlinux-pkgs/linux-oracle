@@ -6,7 +6,7 @@
 
 Name:           linux-oracle
 Version:        5.4.14
-Release:        111
+Release:        112
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
@@ -37,9 +37,8 @@ Requires: linux-oracle-license = %{version}-%{release}
 
 #cve.start cve patches from 0001 to 050
 Patch0001: CVE-2019-12379.patch
-Patch0002: CVE-2019-19043.patch
-Patch0003: CVE-2019-19046.patch
-Patch0004: CVE-2019-19054.patch
+Patch0002: CVE-2019-19046.patch
+Patch0003: CVE-2019-19054.patch
 #cve.end
 
 #mainline: Mainline patches, upstream backport and fixes from 0051 to 0099
@@ -113,7 +112,6 @@ license components for the linux package.
 %patch0001 -p1
 %patch0002 -p1
 %patch0003 -p1
-%patch0004 -p1
 #cve.patch.end
 
 #mainline.patch.start Mainline patches, upstream backport and fixes
