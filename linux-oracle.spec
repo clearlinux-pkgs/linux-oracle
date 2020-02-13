@@ -37,7 +37,6 @@ Requires: linux-oracle-license = %{version}-%{release}
 
 #cve.start cve patches from 0001 to 050
 Patch0001: CVE-2019-12379.patch
-Patch0002: CVE-2019-19054.patch
 #cve.end
 
 #mainline: Mainline patches, upstream backport and fixes from 0051 to 0099
@@ -75,6 +74,7 @@ Patch0127: 0127-x86-microcode-Force-update-a-uCode-even-if-the-rev-i.patch
 Patch0128: 0128-x86-microcode-echo-2-reload-to-force-load-ucode.patch
 Patch0129: 0129-fix-bug-in-ucode-force-reload-revision-check.patch
 Patch0130: 0130-nvme-workaround.patch
+Patch0131: 0131-Don-t-report-an-error-if-PowerClamp-run-on-other-CPU.patch
 #Serie.end
 
 #Serie1.name WireGuard
@@ -108,7 +108,6 @@ license components for the linux package.
 
 #cve.patch.start cve patches
 %patch0001 -p1
-%patch0002 -p1
 #cve.patch.end
 
 #mainline.patch.start Mainline patches, upstream backport and fixes
@@ -146,6 +145,7 @@ license components for the linux package.
 %patch0128 -p1
 %patch0129 -p1
 %patch0130 -p1
+%patch0131 -p1
 #Serie.patch.end
 
 #Serie1.patch.start
