@@ -40,7 +40,7 @@ Patch0001: CVE-2019-12379.patch
 #cve.end
 
 #mainline: Mainline patches, upstream backport and fixes from 0051 to 0099
-Patch0051: 0051-rcu-nocb-Fix-dump_tree-hierarchy-print-always-active.patch
+Patch*.pa: *.patch
 #mainline.end
 
 #Serie.clr 01XX: Clear Linux patches
@@ -111,7 +111,7 @@ license components for the linux package.
 #cve.patch.end
 
 #mainline.patch.start Mainline patches, upstream backport and fixes
-%patch0051 -p1
+%patch*.pa -p1
 #mainline.patch.end
 
 #Serie.patch.start Clear Linux patches
