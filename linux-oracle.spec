@@ -5,13 +5,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.5.15
+Version:        5.6.2
 Release:        134
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.5.15.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.2.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -76,13 +76,6 @@ Patch0130: 0130-nvme-workaround.patch
 Patch0131: 0131-Don-t-report-an-error-if-PowerClamp-run-on-other-CPU.patch
 #Serie.end
 
-#Serie100.name WireGuard
-#Serie100.git  https://git.zx2c4.com/wireguard-linux-compat
-#Serie100.cmt  43f57dac7b8305024f83addc533c9eede6509129
-#Serie100.tag  v1.0.20200401
-Patch1001: 1001-WireGuard-fast-modern-secure-kernel-VPN-tunnel.patch
-#Serie100.end
-
 %description
 The Linux kernel.
 
@@ -103,7 +96,7 @@ Group: Default
 license components for the linux package.
 
 %prep
-%setup -q -n linux-5.5.15
+%setup -q -n linux-5.6.2
 
 #cve.patch.start cve patches
 %patch0001 -p1
@@ -145,10 +138,6 @@ license components for the linux package.
 %patch0130 -p1
 %patch0131 -p1
 #Serie.patch.end
-
-#Serie100.patch.start
-%patch1001 -p1
-#Serie100.patch.end
 
 cp %{SOURCE1} .
 
