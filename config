@@ -4,7 +4,7 @@
 #
 
 #
-# Compiler: gcc (Clear Linux OS for Intel Architecture) 9.3.1 20200331 releases/gcc-9.3.0-66-g0e66150084
+# Compiler: gcc (Clear Linux OS for Intel Architecture) 9.3.1 20200403 releases/gcc-9.3.0-89-g70ae616922
 #
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=90301
@@ -8084,7 +8084,7 @@ CONFIG_INIT_STACK_NONE=y
 # CONFIG_GCC_PLUGIN_STRUCTLEAK_BYREF is not set
 # CONFIG_GCC_PLUGIN_STRUCTLEAK_BYREF_ALL is not set
 # CONFIG_GCC_PLUGIN_STACKLEAK is not set
-CONFIG_INIT_ON_ALLOC_DEFAULT_ON=y
+# CONFIG_INIT_ON_ALLOC_DEFAULT_ON is not set
 # CONFIG_INIT_ON_FREE_DEFAULT_ON is not set
 # end of Memory initialization
 # end of Kernel hardening options
@@ -8783,3 +8783,8 @@ CONFIG_ASYNC_RAID6_TEST=m
 # CONFIG_HYPERV_TESTING is not set
 # end of Kernel Testing and Coverage
 # end of Kernel hacking
+
+
+# kernel-config sources:
+# FILEVER=/usr/share/kernel-config/base-5.6-4-42
+# FILEVER=/usr/share/kernel-config/mandatory-5.6-4-42
