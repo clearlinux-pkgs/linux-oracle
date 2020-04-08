@@ -5,13 +5,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.6.2
-Release:        135
+Version:        5.6.3
+Release:        136
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.2.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.3.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -96,7 +96,7 @@ Group: Default
 license components for the linux package.
 
 %prep
-%setup -q -n linux-5.6.2
+%setup -q -n linux-5.6.3
 
 #cve.patch.start cve patches
 %patch0001 -p1
