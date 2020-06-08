@@ -10,7 +10,6 @@ netroot=iscsi:@169.254.0.2:::1:iqn.2015-02.oracle.boot:uefi
 no_timer_check
 noreplace-smp
 page_alloc.shuffle=1
-rcu_nocbs=0-64
 rcupdate.rcu_expedited=1
 rd.iscsi.ibft=1
 rd.iscsi.initiator=iqn.2015-02.oracle.boot:instance
