@@ -1,10 +1,10 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 5.7.4 Kernel Configuration
+# Linux/x86 5.7.5 Kernel Configuration
 #
 
 #
-# Compiler: gcc (Clear Linux OS for Intel Architecture) 10.1.1 20200610 releases/gcc-10.1.0-162-g5bb75908cb
+# Compiler: gcc (Clear Linux OS for Intel Architecture) 10.1.1 20200618 releases/gcc-10.1.0-218-g6e81b0cf4f
 #
 CONFIG_CC_IS_GCC=y
 CONFIG_GCC_VERSION=100101
@@ -7036,6 +7036,7 @@ CONFIG_INTEL_PMC_CORE=m
 CONFIG_INTEL_PMC_IPC=m
 CONFIG_INTEL_PUNIT_IPC=m
 CONFIG_INTEL_TELEMETRY=m
+CONFIG_PMC_ATOM=y
 CONFIG_MFD_CROS_EC=m
 CONFIG_CHROME_PLATFORMS=y
 CONFIG_CHROMEOS_LAPTOP=m
@@ -8851,3 +8852,8 @@ CONFIG_ASYNC_RAID6_TEST=m
 # CONFIG_HYPERV_TESTING is not set
 # end of Kernel Testing and Coverage
 # end of Kernel hacking
+
+
+# kernel-config sources:
+# FILEVER=/usr/share/kernel-config/base-5.7-4-44
+# FILEVER=/usr/share/kernel-config/mandatory-5.7-4-44
