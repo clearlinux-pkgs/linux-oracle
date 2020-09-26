@@ -6,7 +6,7 @@
 
 Name:           linux-oracle
 Version:        5.8.11
-Release:        176
+Release:        177
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
