@@ -5,13 +5,13 @@
 #
 
 Name:           linux-oracle
-Version:        5.8.12
-Release:        178
+Version:        5.8.13
+Release:        179
 License:        GPL-2.0
 Summary:        The Linux kernel
 Url:            http://www.kernel.org/
 Group:          kernel
-Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.8.12.tar.xz
+Source0:        https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.8.13.tar.xz
 Source1:        config
 Source2:        cmdline
 
@@ -94,7 +94,7 @@ Group: Default
 license components for the linux package.
 
 %prep
-%setup -q -n linux-5.8.12
+%setup -q -n linux-5.8.13
 
 #cve.patch.start cve patches
 #cve.patch.end
